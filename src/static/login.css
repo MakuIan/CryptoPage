@@ -7,17 +7,32 @@ body {
   align-items: center;
   height: 100vh;
 }
+.user-img {
+  margin-top: 5px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 150px;
+}
 .login-wrapper {
   background-color: #fff;
-  padding: 80px;
   border-radius: 15px;
-  width: 200px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  width: 300px;
+  position: relative;
 }
 .login-wrapper form {
+  margin-top: 110px;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(3, 60px) auto;
+  grid-template-rows: repeat(4, 60px) auto;
   grid-column-gap: 10px;
 }
 .login-wrapper .input-box:nth-child(3) {
@@ -28,8 +43,22 @@ body {
 }
 .login-wrapper .input-box input {
   padding: 5px;
+  height: 30px;
+  line-height: 30px;
   width: 95%;
   grid-column: 1 / -1;
+}
+.login-wrapper .input-box input[type="text"] {
+  padding-left: 40px;
+  background-image: url(https://img.icons8.com/ios-glyphs/30/user--v1.png);
+  background-repeat: no-repeat;
+  background-position: 10px center;
+}
+.login-wrapper .input-box input[type="password"] {
+  padding-left: 40px;
+  background-image: url(https://img.icons8.com/ios-glyphs/30/password--v1.png);
+  background-repeat: no-repeat;
+  background-position: 10px center;
 }
 
 .login-wrapper .input-box input:focus {
@@ -44,4 +73,24 @@ body {
 .login-wrapper .remember-forget input {
   height: 10px;
   width: 10px;
+}
+.login-wrapper .remember-forget .remember-me {
+  display: flex;
+  align-items: center;
+}
+.login-wrapper .remember-forget {
+  margin-top: 50px;
+}
+
+.login-wrapper .btn-wrapper {
+  margin-top: 20px;
+}
+.login-wrapper .btn-wrapper .btn {
+  background-color: #7f049b;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
