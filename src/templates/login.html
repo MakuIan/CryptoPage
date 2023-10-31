@@ -10,20 +10,26 @@
     <div class="login-wrapper">
       <form action="">
         <h1>Login</h1>
-        <div class="input-box">
-          <input type="text" placeholder="Username" required />
-        </div>
-        <div class="input-box">
-          <input type="password" placeholder="password" required />
-        </div>
+        <section>
+          <div class="input-box">
+            <input type="text" placeholder="Username" required />
+          </div>
+          <div class="input-box">
+            <input type="password" placeholder="password" required />
+          </div>
+        </section>
         <div class="remember-forget">
-          <label for="">
-            <input type="checkbox" /> Remember me
-            <a href="">Forget Password?</a>
-          </label>
+          <input
+            type="checkbox"
+            id="remember-me-checkbox"
+            name="remember-me"
+            placeholder="Remember me"
+          />
+          <p>Remember me</p>
+          <a href="#">Forget Password?</a>
         </div>
         <div class="login-btn-wrapper">
-          <button class="btn" type="submit">Loin</button>
+          <button class="btn" type="submit">Login</button>
           <button class="btn" type="submit">Register</button>
         </div>
       </form>

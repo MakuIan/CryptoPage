@@ -2,4 +2,46 @@ body {
   background-image: url("wp9764012-login-page-wallpapers.jpg");
   background-size: cover;
   font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.login-wrapper {
+  background-color: #fff;
+  padding: 80px;
+  border-radius: 15px;
+  width: 200px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.login-wrapper form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, 60px) auto;
+  grid-column-gap: 10px;
+}
+.login-wrapper .input-box:nth-child(3) {
+  grid-row: 4;
+}
+.login-wrapper .input-box {
+  margin-top: 10px;
+}
+.login-wrapper .input-box input {
+  padding: 5px;
+  width: 95%;
+  grid-column: 1 / -1;
+}
+
+.login-wrapper .input-box input:focus {
+  outline: none;
+}
+.login-wrapper .remember-forget {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+}
+.login-wrapper .remember-forget input {
+  height: 10px;
+  width: 10px;
 }
