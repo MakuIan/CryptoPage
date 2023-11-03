@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="../static/login.css" />
   </head>
   <body>
+    {% if error %}
+    <script>
+      alert("{{error}}");
+    </script>
+    {% endif %} {% if msg %}
+    <script>
+      alert("{{msg}}");
+    </script>
+    {% endif %}
     <div class="login-wrapper">
       <form action="" method="POST">
         <img
@@ -46,8 +55,17 @@
           <a href="#">Forget Password?</a>
         </div>
         <div class="btn-wrapper">
-          <button class="btn" type="submit">Login</button>
-          <button class="btn" type="submit">Register</button>
+          <button class="btn" type="submit" value="login" name="submit_button">
+            Login
+          </button>
+          <button
+            class="btn"
+            type="submit"
+            value="register"
+            name="submit_button"
+          >
+            Register
+          </button>
         </div>
       </form>
     </div>
