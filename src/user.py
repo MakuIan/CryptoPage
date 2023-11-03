@@ -1,12 +1,12 @@
 class User:
-    def __init__(self, username=None, password=None, user_id=None):
-        self._user_id = user_id
+    def __init__(self, username=None, password=None, id=None):
+        self._id = id
         self._username = username
         self._password = password
 
     @property
-    def user_id(self):
-        return self._user_id
+    def id(self):
+        return self._id
 
     @property
     def username(self):
@@ -16,9 +16,9 @@ class User:
     def password(self):
         return self._password
 
-    @user_id.setter
-    def user_id(self, user_id):
-        self._user_id = user_id
+    @id.setter
+    def id(self, id):
+        self._id = id
 
     @username.setter
     def username(self, username):
