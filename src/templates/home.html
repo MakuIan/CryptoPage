@@ -16,5 +16,23 @@
         </ul>
       </nav>
     </header>
+    <section class="container">
+      <button class="btn" onclick="openPopup()">Add</button>
+      <div class="popup" id="popup">
+        <img src="../static/images/404-tick.png" alt="tick" />
+        <h2>Added</h2>
+        <p>Added Successfuly</p>
+        <button type="button" onclick="closePopup()">Return</button>
+      </div>
+    </section>
+    <script>
+      const popup = document.getElementById("popup");
+      function openPopup() {
+        popup.classList.add("open-popup");
+      }
+      function closePopup() {
+        popup.classList.remove("open-popup");
+      }
+    </script>
   </body>
 </html>

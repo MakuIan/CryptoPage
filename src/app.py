@@ -37,6 +37,13 @@ def login():
                 return render_template('login.html', error='Invalid username or password')
         # register
         if request.form['submit_button'] == 'register':
+            query = f'SELECT username FROM user WHERE username="{user.username}"'
+            conn = sqlite3.connect(db_path)
+            c = conn.cursor()
+            c.execute(query)
+            result = c.fetchone()
+            if result:
+                return render_template('login.html', error='Username already exists')
             query = f'INSERT INTO user (username, password) VALUES ("{user.username}", "{hashed_password}")'
             conn = sqlite3.connect(db_path)
             c = conn.cursor()
