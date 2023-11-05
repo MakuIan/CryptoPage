@@ -8,6 +8,7 @@ import os
 import secrets
 from flask import Flask, render_template, request, redirect, url_for, session
 from login import handle_login
+from home import home as home_page
 
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -33,13 +34,16 @@ def login():
         return render_template('login.html')
 
 
-@app.route('/home')
+@app.route('/home', methods=['GET', 'POST'])
 def home():
     """
     Render home page.
     """
     if 'id' in session:
-        return render_template('home.html', id=session['id'], username=session['username'])
+        if request.method == 'POST':
+            return home_page()
+        else:
+            return render_template('home.html', id=session['id'], username=session['username'], )
     else:
         return redirect(url_for('login'))
 

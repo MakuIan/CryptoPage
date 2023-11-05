@@ -13,3 +13,8 @@ function add(id) {
   if (!popup) return;
   popup.style.visibility = "visible";
 }
+function search(id) {
+  var popup = document.getElementById(id);
+  if (!popup) return;
+  popup.style.visibility = "visible";
+}

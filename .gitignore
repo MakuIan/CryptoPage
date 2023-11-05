@@ -8,7 +8,8 @@ __pycache__/
 
 # Ignore the "env" directory
 env/
-
+#ignore api key
+src/apikey.py
 # ignore all .DS_Store files
 .DS_Store
 

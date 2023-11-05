@@ -18,11 +18,21 @@
     </header>
     <section class="container">
       <button class="btn" onclick="openPopup('search')">Add</button>
-      <form>
+      <form method="POST" action="">
         <section class="search" id="search">
           <section>
             <input type="text" placeholder="Search" />
-            <button type="submit">
+            <button
+              type="submit"
+              name="home_btn"
+              value="search_btn"
+              onclick="openPopup('search')"
+            >
+              {% if post %}
+              <script>
+                search.classList.add("open-popup");
+              </script>
+              {% endif %}
               <img src="../static/images/search-icon.png" alt="search-icon" />
             </button>
             <button type="button" onclick="closePopup('search')">
@@ -42,11 +52,5 @@
       </form>
     </section>
     <script src="../static/popupButtons.js"></script>
-    <script>
-      const form = document.querySelector("form");
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-      });
-    </script>
   </body>
 </html>
