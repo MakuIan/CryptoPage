@@ -18,12 +18,27 @@
     </header>
     <section class="container">
       <button class="btn" onclick="openPopup()">Add</button>
-      <div class="popup" id="popup">
-        <img src="../static/images/404-tick.png" alt="tick" />
-        <h2>Added</h2>
-        <p>Added Successfuly</p>
-        <button type="button" onclick="closePopup()">Return</button>
-      </div>
+      <form>
+        <div class="search-bar">
+          <section>
+            <input type="text" placeholder="Search" />
+            <button type="submit" class="search-btn">
+              <img
+                src="../static/images/search-icon.png"
+                alt="search-icon"
+              />Search
+            </button>
+          </section>
+        </div>
+          <button type="button" onclick="closePopup()">Return</button>
+        </div>
+        <div class="popup" id="popup">
+          <img src="../static/images/404-tick.png" alt="tick" />
+          <h2>Added</h2>
+          <p>Added Successfuly</p>
+          <button type="button" onclick="closePopup()">Return</button>
+        </div>
+      </form>
     </section>
     <script>
       const popup = document.getElementById("popup");
@@ -32,6 +47,9 @@
       }
       function closePopup() {
         popup.classList.remove("open-popup");
+      }
+      function add() {
+        popup.style.visibility = "visible";
       }
     </script>
   </body>
