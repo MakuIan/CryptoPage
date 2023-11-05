@@ -17,21 +17,22 @@
       </nav>
     </header>
     <section class="container">
-      <button class="btn" onclick="openPopup()">Add</button>
+      <button class="btn" onclick="openPopup('search')">Add</button>
       <form>
-        <div class="search-bar">
+        <section class="search" id="search">
           <section>
             <input type="text" placeholder="Search" />
-            <button type="submit" class="search-btn">
+            <button type="submit">
+              <img src="../static/images/search-icon.png" alt="search-icon" />
+            </button>
+            <button type="button" onclick="closePopup('search')">
               <img
-                src="../static/images/search-icon.png"
-                alt="search-icon"
-              />Search
+                src="../static/images/icons8-return-48.png"
+                alt="plus-icon"
+              />
             </button>
           </section>
-        </div>
-          <button type="button" onclick="closePopup()">Return</button>
-        </div>
+        </section>
         <div class="popup" id="popup">
           <img src="../static/images/404-tick.png" alt="tick" />
           <h2>Added</h2>
@@ -40,17 +41,12 @@
         </div>
       </form>
     </section>
+    <script src="../static/popupButtons.js"></script>
     <script>
-      const popup = document.getElementById("popup");
-      function openPopup() {
-        popup.classList.add("open-popup");
-      }
-      function closePopup() {
-        popup.classList.remove("open-popup");
-      }
-      function add() {
-        popup.style.visibility = "visible";
-      }
+      const form = document.querySelector("form");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+      });
     </script>
   </body>
 </html>
