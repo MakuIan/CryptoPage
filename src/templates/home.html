@@ -20,27 +20,65 @@
       <button class="btn" onclick="openPopup('search')">Add</button>
       <form method="POST" action="">
         <section class="search" id="search">
-          <section>
-            <input type="text" placeholder="Search" />
-            <button
-              type="submit"
-              name="home_btn"
-              value="search_btn"
-              onclick="openPopup('search')"
-            >
-              {% if post %}
-              <script>
-                search.classList.add("open-popup");
-              </script>
-              {% endif %}
-              <img src="../static/images/search-icon.png" alt="search-icon" />
-            </button>
-            <button type="button" onclick="closePopup('search')">
-              <img
-                src="../static/images/icons8-return-48.png"
-                alt="plus-icon"
+          <section class="search-container">
+            <section>
+              <input
+                type="text"
+                placeholder="Search by Symbol"
+                id="search-input"
+                name="search-input"
               />
-            </button>
+              <!-- search button -->
+              <button
+                type="submit"
+                name="home_btn"
+                value="search_btn"
+                onclick="openPopup('search')"
+                class="search-btn"
+              >
+                <img src="../static/images/search-icon.png" alt="search-icon" />
+              </button>
+              <button
+                type="button"
+                onclick="closePopup('search')"
+                class="search-btn"
+              >
+                <img
+                  src="../static/images/icons8-return-48.png"
+                  alt="plus-icon"
+                />
+              </button>
+            </section>
+            <!-- if data is displayed -->
+            {% if data %}
+            <div class="search-results">
+              <img src="{{data['logo']}}" alt="logo of {{data[name]}}" />
+              <h1>{{data['symbol']}}</h1>
+              <h1>{{data['name']}}</h1>
+              <h1>{{data['price']}}</h1>
+
+              <button type="submit" class="add-cryptobtn">
+                <span class="add-cryptobtn-text"> ADD </span>
+                <span class="add-cryptobtn-icon">
+                  <ion-icon name="add-circle-outline"></ion-icon>
+                </span>
+              </button>
+            </div>
+            <script src="../static/displayData.js"></script>
+            <script
+              type="module"
+              src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+            ></script>
+            <script
+              nomodule
+              src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+            ></script>
+            {% endif %} {% if error %}
+            <div class="search-results">
+              <h1>{{error}}</h1>
+              <script src="../static/displayData.js"></script>
+            </div>
+            {% endif %}
           </section>
         </section>
         <div class="popup" id="popup">
