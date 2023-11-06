@@ -57,14 +57,23 @@
               <h1>{{data['name']}}</h1>
               <h1>{{data['price']}}</h1>
 
-              <button type="submit" class="add-cryptobtn">
+              <button
+                type="submit"
+                class="add-cryptobtn"
+                value="add_crypto_btn"
+                name="home_btn"
+              >
                 <span class="add-cryptobtn-text"> ADD </span>
                 <span class="add-cryptobtn-icon">
                   <ion-icon name="add-circle-outline"></ion-icon>
                 </span>
               </button>
             </div>
-            <script src="../static/displayData.js"></script>
+            <script>
+              search.classList.add("open-popup");
+              const element = document.querySelector(".search-container");
+              element.style.marginTop = "160px";
+            </script>
             <script
               type="module"
               src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
@@ -76,7 +85,11 @@
             {% endif %} {% if error %}
             <div class="search-results">
               <h1>{{error}}</h1>
-              <script src="../static/displayData.js"></script>
+              <script>
+                search.classList.add("open-popup");
+                const element = document.querySelector(".search-container");
+                element.style.marginTop = "160px";
+              </script>
             </div>
             {% endif %}
           </section>

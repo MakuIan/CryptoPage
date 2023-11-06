@@ -73,11 +73,20 @@ header a {
   background-color: #ff8533;
   border-radius: 10px;
   padding: 35px 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 5s ease-in-out;
 }
+
 .search-results img {
   width: 100px;
   border-radius: 50%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  animation: shake 0.3s ease-in-out;
+}
+.search-results img:hover {
+  transform: scale(1.1);
+  transition: scale 0.3s ease-in-out;
+  animation: spin 1s ease-in-out infinite;
 }
 .search .search-container section {
   backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
@@ -206,6 +215,7 @@ header a {
   -webkit-transform: scale(1.1);
   transition: scale 0.3s ease-in-out;
   transform: scale(1.1);
+  animation: shake 0.3s ease-in-out;
 }
 .add-cryptobtn:focus {
   outline: none;
@@ -215,4 +225,29 @@ header a {
 }
 .add-cryptobtn-icon {
   width: 30px;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
