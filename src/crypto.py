@@ -1,6 +1,6 @@
-class crypto:
+class Crypto:
     def __init__(self, crypto_id, name, symbol, price):
-        self.crypto_id = crypto_id
+        self.id = crypto_id
         self.name = name
         self.symbol = symbol
         self.price = price
@@ -12,8 +12,8 @@ class crypto:
         return f'crypto({self.crypto_id}, {self.name}, {self.symbol}, {self.price})'
 
     @property
-    def crypto_id(self):
-        return self._crypto_id
+    def id(self):
+        return self.id
 
     @property
     def name(self):
@@ -27,9 +27,9 @@ class crypto:
     def price(self):
         return self._price
 
-    @crypto_id.setter
-    def crypto_id(self, crypto_id):
-        self._crypto_id = crypto_id
+    @id.setter
+    def id(self, crypto_id):
+        self._id = crypto_id
 
     @name.setter
     def name(self, name):
