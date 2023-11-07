@@ -46,13 +46,15 @@ def home():
         search = request.form['search-input']
         res = get_crypto_data(search)
         if res is None:
-            return render_template('home.html', id=session['id'], username=session['username'], error='Invalid Symbol')
+            return render_template('home.html', id=session['id'], username=session['username'], msg='Invalid Symbol')
         data = {
             'symbol': res['symbol'],
             'name': res['name'],
             'logo': res['logo'],
             'price': res['price'],
         }
-
         return render_template('home.html', id=session['id'], username=session['username'], data=data)
+    if request.form['home_btn'] == 'add_crypto_btn':
+        return render_template('home.html', id=session['id'], username=session['username'], msg='Added')
+
     return render_template('home.html', id=session['id'], username=session['username'])

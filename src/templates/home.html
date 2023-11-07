@@ -63,7 +63,13 @@
                 value="add_crypto_btn"
                 name="home_btn"
               >
-                <span class="add-cryptobtn-text"> ADD </span>
+                <span
+                  class="add-cryptobtn-text"
+                  name="home_btn"
+                  value="add_crypto_btn"
+                >
+                  ADD
+                </span>
                 <span class="add-cryptobtn-icon">
                   <ion-icon name="add-circle-outline"></ion-icon>
                 </span>
@@ -82,9 +88,9 @@
               nomodule
               src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
             ></script>
-            {% endif %} {% if error %}
+            {% endif %} {% if msg %}
             <div class="search-results">
-              <h1>{{error}}</h1>
+              <h1>{{msg}}</h1>
               <script>
                 search.classList.add("open-popup");
                 const element = document.querySelector(".search-container");
