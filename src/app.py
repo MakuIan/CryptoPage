@@ -9,6 +9,9 @@ import secrets
 from flask import Flask, render_template, request, redirect, url_for, session
 from login import handle_login
 from home import home as home_page
+from portfolio import Portfolio
+from user import User
+import sqlite3
 
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -41,7 +44,16 @@ def home():
     """
     if 'id' in session:
         if request.method == 'POST':
-            return home_page(db_path)
+            user = User(session['username'], session['id'])
+            conn = sqlite3.connect(db_path)
+            c = conn.cursor()
+            query = f'SELECT crypto_id, amount FROM portfolio WHERE id = {user.id}'
+            c.execute(query)
+            data = c.fetchall()
+            portfolio = Portfolio(session['id'])
+            for row in data:
+                portfolio.add_crypto(row[0], row[1])
+            return home_page(db_path, portfolio)
         else:
             return render_template('home.html', id=session['id'], username=session['username'], )
     else:
