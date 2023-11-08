@@ -4,7 +4,8 @@ from flask import session, render_template, request
 from crypto import Crypto
 
 
-def add_crypto(db_path):
+def add_crypto(db_path, portfolio):
+    '''Add crypto to database.'''
 
     data = session['crypto']
     crypto = pickle.loads(data)
@@ -14,15 +15,22 @@ def add_crypto(db_path):
     c.execute(query)
     result = c.fetchone()
     if result is None:
-        query = f'INSERT INTO crypto (crypto_id, name, symbol,price,logo) VALUES (?, ?, ?, ?, ?)")'
+        query = 'INSERT INTO crypto (crypto_id, name, symbol,price,logo) VALUES (?, ?, ?, ?, ?)'
         c.execute(query, (crypto.id, crypto.name,
                   crypto.symbol, crypto.price, crypto.logo))
         conn.commit()
         msg = 'Crypto Added'
     else:
-        query = f"UPDATE crypto SET price = ? WHERE crypto_id = ?"
+        query = "UPDATE crypto SET price = ? WHERE crypto_id = ?"
         c.execute(query, (crypto.price, crypto.id))
         conn.commit()
         msg = 'Crypto Already Added'
+    if portfolio.includes(crypto.id):
+        msg = 'Crypto Already Added'
+        return render_template('home.html', id=session['id'], username=session['username'], msg=msg, portfolio=portfolio)
+    query = 'INSERT INTO portfolio (crypto_id,user_id,amount) VALUES (?, ?,?)'
+    c.execute(query, (crypto.id, session['id'], 0))
+    conn.commit()
+    portfolio.add_crypto(crypto.id, 0)
     conn.close()
-    return render_template('home.html', id=session['id'], username=session['username'], msg=msg)
+    return render_template('home.html', id=session['id'], username=session['username'], msg=msg, portfolio=portfolio)

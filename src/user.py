@@ -1,8 +1,9 @@
 class User:
-    def __init__(self, username=None, password=None, id=None):
+
+    def __init__(self, username=None, id=None):
         self._id = id
         self._username = username
-        self._password = password
+        self._password = None
 
     @property
     def id(self):

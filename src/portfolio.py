@@ -1,9 +1,8 @@
 class Portfolio:
-    cryptos = {}
 
-    def __init__(self, user_id, cryptos):
+    def __init__(self, user_id):
         self.user_id = user_id
-        self.cryptos = cryptos
+        self.cryptos = {}
 
     @property
     def user_id(self):
@@ -13,14 +12,6 @@ class Portfolio:
     def user_id(self, value):
         self._user_id = value
 
-    @property
-    def cryptos(self):
-        return self.cryptos
-
-    @cryptos.setter
-    def cryptos(self, value):
-        self.cryptos = value
-
     # methods
 
     def add_crypto(self, crypto_id, amount):
@@ -28,3 +19,6 @@ class Portfolio:
 
     def del_crypto(self, crypto_id):
         del self.cryptos[crypto_id]
+
+    def includes(self, crypto_id):
+        return crypto_id in self.cryptos

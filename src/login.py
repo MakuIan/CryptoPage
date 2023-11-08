@@ -7,14 +7,13 @@ import sqlite3
 from flask import request, redirect, url_for, session, render_template
 from user import User
 
-# create user object
-user = User()
-
 
 def handle_login(db_path):
     """
     Handle user login and registration.
     """
+# create user object
+    user = User()
     user.username = request.form['username']
     user.password = request.form['password']
     hashed_password = hashlib.sha256(user.password.encode()).hexdigest()

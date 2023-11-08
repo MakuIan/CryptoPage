@@ -16,19 +16,19 @@ def home(db_path):
     """
     Render home page.
     """
-    user = User(session['username'], session['password'], session['id'])
+    user = User(session['username'], session['id'])
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
     query = f'SELECT crypto_id, amount FROM portfolio WHERE id = {user.id}'
     c.execute(query)
     data = c.fetchall()
-    portfolio = Portfolio(user.id, {})
+    portfolio = Portfolio(user.id)
     for row in data:
         portfolio.add_crypto(row[0], row[1])
     # TODO: add portfolio to add_crypto and search_crypto
     if request.form['home_btn'] == 'search_btn':
-        return search_crypto(db_path)
+        return search_crypto(portfolio)
     if request.form['home_btn'] == 'add_crypto_btn':
-        return add_crypto(db_path)
+        return add_crypto(db_path, portfolio)
 
-    return render_template('home.html', id=session['id'], username=session['username'])
+    return render_template('home.html', id=session['id'], username=session['username'], portfolio=portfolio)

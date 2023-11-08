@@ -6,12 +6,6 @@ class Crypto:
         self.price = price
         self.logo = logo
 
-    def __repr__(self):
-        return f'crypto({self.crypto_id}, {self.name}, {self.symbol}, {self.price})'
-
-    def __str__(self):
-        return f'crypto({self.crypto_id}, {self.name}, {self.symbol}, {self.price})'
-
     @property
     def id(self):
         return self._id
