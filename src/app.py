@@ -41,7 +41,7 @@ def home():
     """
     if 'id' in session:
         if request.method == 'POST':
-            return home_page()
+            return home_page(db_path)
         else:
             return render_template('home.html', id=session['id'], username=session['username'], )
     else:

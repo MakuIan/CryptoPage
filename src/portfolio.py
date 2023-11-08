@@ -1,38 +1,30 @@
 class Portfolio:
-    def __init__(self, id, user, crypto, amount):
-        self.id = id
-        self.user = user
-        self.crypto = crypto
-        self.amount = amount
+    cryptos = {}
+
+    def __init__(self, user_id, cryptos):
+        self.user_id = user_id
+        self.cryptos = cryptos
 
     @property
-    def id(self):
-        return self._id
+    def user_id(self):
+        return self._user_id
 
-    @id.setter
-    def id(self, value):
-        self._id = value
-
-    @property
-    def user(self):
-        return self._user
-
-    @user.setter
-    def user(self, value):
-        self._user = value
+    @user_id.setter
+    def user_id(self, value):
+        self._user_id = value
 
     @property
-    def crypto(self):
-        return self._crypto
+    def cryptos(self):
+        return self.cryptos
 
-    @crypto.setter
-    def crypto(self, value):
-        self._crypto = value
+    @cryptos.setter
+    def cryptos(self, value):
+        self.cryptos = value
 
-    @property
-    def amount(self):
-        return self._amount
+    # methods
 
-    @amount.setter
-    def amount(self, value):
-        self._amount = value
+    def add_crypto(self, crypto_id, amount):
+        self.cryptos[crypto_id] = amount
+
+    def del_crypto(self, crypto_id):
+        del self.cryptos[crypto_id]

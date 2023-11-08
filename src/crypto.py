@@ -1,9 +1,10 @@
 class Crypto:
-    def __init__(self, crypto_id, name, symbol, price):
-        self.id = crypto_id
+    def __init__(self, crypto_id, name, symbol, price, logo):
+        self._id = crypto_id
         self.name = name
         self.symbol = symbol
         self.price = price
+        self.logo = logo
 
     def __repr__(self):
         return f'crypto({self.crypto_id}, {self.name}, {self.symbol}, {self.price})'
@@ -13,7 +14,7 @@ class Crypto:
 
     @property
     def id(self):
-        return self.id
+        return self._id
 
     @property
     def name(self):
@@ -26,6 +27,10 @@ class Crypto:
     @property
     def price(self):
         return self._price
+
+    @property
+    def logo(self):
+        return self._logo
 
     @id.setter
     def id(self, crypto_id):
@@ -42,3 +47,7 @@ class Crypto:
     @price.setter
     def price(self, price):
         self._price = price
+
+    @logo.setter
+    def logo(self, logo):
+        self._logo = logo

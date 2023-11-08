@@ -2,59 +2,33 @@
 This module contains the Home page.
 """
 from flask import session, render_template, request
+from crypto import Crypto
 # from apikey import CRYPTO_COMPARE_API_KEY as CRYPTO_COMPARE
-import requests  # pylint: disable=import-error
-
-from apikey import CRYPTO_COMPARE_API_KEY as CRYPTO_COMPARE  # pylint: disable=import-error
-
-
-def get_crypto_data(symbol):
-    # Set up the API request parameters
-    try:
-        params = {
-            'asset_symbol': symbol.upper(),
-            'api_key': CRYPTO_COMPARE,
-        }
-
-        # Send the API request and parse the response
-        response = requests.get(
-            'https://data-api.cryptocompare.com/asset/v1/data/by/symbol', params=params)
-        data = response.json()
-
-        # Extract the relevant data from the response
-        symbol = data['Data']['SYMBOL']
-        name = data['Data']['NAME']
-        logo = data['Data']['LOGO_URL']
-        price = data['Data']['PRICE_USD']
-
-        # Return the data as a dictionary
-        return {
-            'symbol': symbol,
-            'name': name,
-            'logo': logo,
-            'price': price,
-        }
-    except KeyError:
-        return None
+import sqlite3  # pylint: disable=import-error
+from get_crypto_data import get_crypto_data
+from add_crypto import add_crypto
+from search_crypto import search_crypto
+from portfolio import Portfolio
+from user import User
 
 
-def home():
+def home(db_path):
     """
     Render home page.
     """
+    user = User(session['username'], session['password'], session['id'])
+    conn = sqlite3.connect(db_path)
+    c = conn.cursor()
+    query = f'SELECT crypto_id, amount FROM portfolio WHERE id = {user.id}'
+    c.execute(query)
+    data = c.fetchall()
+    portfolio = Portfolio(user.id, {})
+    for row in data:
+        portfolio.add_crypto(row[0], row[1])
+    # TODO: add portfolio to add_crypto and search_crypto
     if request.form['home_btn'] == 'search_btn':
-        search = request.form['search-input']
-        res = get_crypto_data(search)
-        if res is None:
-            return render_template('home.html', id=session['id'], username=session['username'], msg='Invalid Symbol')
-        data = {
-            'symbol': res['symbol'],
-            'name': res['name'],
-            'logo': res['logo'],
-            'price': res['price'],
-        }
-        return render_template('home.html', id=session['id'], username=session['username'], data=data)
+        return search_crypto(db_path)
     if request.form['home_btn'] == 'add_crypto_btn':
-        return render_template('home.html', id=session['id'], username=session['username'], msg='Added')
+        return add_crypto(db_path)
 
     return render_template('home.html', id=session['id'], username=session['username'])

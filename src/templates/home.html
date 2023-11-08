@@ -52,10 +52,10 @@
             <!-- if data is displayed -->
             {% if data %}
             <div class="search-results">
-              <img src="{{data['logo']}}" alt="logo of {{data[name]}}" />
-              <h1>{{data['symbol']}}</h1>
-              <h1>{{data['name']}}</h1>
-              <h1>{{data['price']}}</h1>
+              <img src="{{data.logo}}" alt="logo of {{data.name}}" />
+              <h1>{{data.symbol}}</h1>
+              <h1>{{data.name}}</h1>
+              <h1>{{data.price}}</h1>
 
               <button
                 type="submit"
