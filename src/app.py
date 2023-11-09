@@ -46,7 +46,7 @@ def home():
         user = User(session['username'], session['id'])
         conn = sqlite3.connect(db_path)
         c = conn.cursor()
-        query = f'SELECT crypto_id, amount FROM portfolio WHERE id = {user.id}'
+        query = f'SELECT crypto_id, amount FROM portfolio WHERE user_id = {user.id}'
         c.execute(query)
         data = c.fetchall()
         portfolio = Portfolio(session['id'])
