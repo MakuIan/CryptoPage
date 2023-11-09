@@ -112,6 +112,29 @@
     <section class="portfolio-container">
       {% if portfolio %}
       <h1>Portfolio</h1>
+      <table class="portfolio">
+        <thead>
+          <tr>
+            <th>Cryptocurrency</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for crypto_id, amount in portfolio.cryptos.items() %} {conn =
+          sqlite3.connect('crypto.db') c = conn.cursor() query = ""SELECT
+          (name,symbol,price,logo) FROM cryptos WHERE id = ?"" c.execute(query,
+          (crypto_id)) data =c.fetchall() for row in data: name = row[0] symbol
+          = row[1] price = row[2] logo = row[3]}
+          <tr>
+            <td>{{name}}</td>
+            <td>{{symbol}}</td>
+            <td>{{price}}</td>
+            <td>{{logo}}</td>
+            <td>{{amount}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
       {% endif %}
     </section>
     <script src="../static/popupButtons.js"></script>
