@@ -115,32 +115,35 @@
       <table class="portfolio">
         <thead>
           <tr>
-            <th></th>
             <th>Cryptocurrency</th>
-            <th>Amount</th>
+            <th>Symbol</th>
             <th>Price</th>
-            <th>Value</th>
+            <th>Amount</th>
           </tr>
         </thead>
         <tbody>
           {% for crypto_id, crypto_info in portfolio.cryptos.items() %}
-          <tr>
-            <td>
-              <img
-                src="{{crypto_info.logo}}"
-                alt="logo of{{crypto_info.name}}"
-              />
+          <tr class="portfolio-item">
+            <td class="portfolio-info">
+              <span>
+                {{crypto_info.name}}
+
+                <img
+                  src="{{crypto_info.logo}}"
+                  alt="logo of{{crypto_info.name}}"
+                />
+              </span>
             </td>
-            <td>{{crypto_info.name}}</td>
-            <td>{{crypto_info.symbol}}</td>
-            <td>{{crypto_info.price}}</td>
-            <td>{{crypto_info.amount}}</td>
-            <td>
+            <td class="portfolio-info">{{crypto_info.symbol}}</td>
+            <td class="portfolio-info">{{crypto_info.price}}</td>
+            <td class="portfolio-info">{{crypto_info.amount}}</td>
+            <td class="portfolio-info">
               <button
                 title="Sell {{crypto_info.name}}"
                 type="submit"
                 name="portfolio_button"
                 value="{{crypto_id}}"
+                class="remove-btn"
               >
                 Remove
               </button>
