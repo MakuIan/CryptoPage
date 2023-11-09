@@ -1,3 +1,7 @@
+import sqlite3
+import os
+
+
 class Portfolio:
 
     def __init__(self, user_id):
@@ -15,7 +19,20 @@ class Portfolio:
     # methods
 
     def add_crypto(self, crypto_id, amount):
-        self.cryptos[crypto_id] = amount
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        db_path = os.path.join(current_dir, '..', 'data', 'crypto_app.db')
+        conn = sqlite3.connect(db_path)
+        c = conn.cursor()
+        query = "SELECT name,symbol,price,logo FROM crypto WHERE crypto_id = ?"
+        c.execute(query, (crypto_id,))
+        data = c.fetchone()
+        name = data[0]
+        symbol = data[1]
+        price = data[2]
+        logo = data[3]
+        self.cryptos[crypto_id] = {
+            'name': name, 'symbol': symbol, 'price': price, 'logo': logo, 'amount': amount}
+        conn.close()
 
     def del_crypto(self, crypto_id):
         del self.cryptos[crypto_id]
