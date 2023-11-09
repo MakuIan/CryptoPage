@@ -43,19 +43,19 @@ def home():
     Render home page.
     """
     if 'id' in session:
+        user = User(session['username'], session['id'])
+        conn = sqlite3.connect(db_path)
+        c = conn.cursor()
+        query = f'SELECT crypto_id, amount FROM portfolio WHERE id = {user.id}'
+        c.execute(query)
+        data = c.fetchall()
+        portfolio = Portfolio(session['id'])
+        for row in data:
+            portfolio.add_crypto(row[0], row[1])
         if request.method == 'POST':
-            user = User(session['username'], session['id'])
-            conn = sqlite3.connect(db_path)
-            c = conn.cursor()
-            query = f'SELECT crypto_id, amount FROM portfolio WHERE id = {user.id}'
-            c.execute(query)
-            data = c.fetchall()
-            portfolio = Portfolio(session['id'])
-            for row in data:
-                portfolio.add_crypto(row[0], row[1])
             return home_page(db_path, portfolio)
         else:
-            return render_template('home.html', id=session['id'], username=session['username'], )
+            return render_template('home.html', id=session['id'], username=session['username'], portfolio=portfolio)
     else:
         return redirect(url_for('login'))
 

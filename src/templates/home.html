@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="../static/home.css" />
+    <link rel="stylesheet" href="../static/portfolio.css" />
   </head>
   <body>
     <header>
@@ -100,11 +101,6 @@
             {% endif %}
           </section>
         </section>
-        <secction class="portfolio">
-          {% if portfolio %}
-          <h1>Portfolio</h1>
-          {% endif %}
-        </secction>
         <div class="popup" id="popup">
           <img src="../static/images/404-tick.png" alt="tick" />
           <h2>Added</h2>
@@ -112,6 +108,11 @@
           <button type="button" onclick="closePopup()">Return</button>
         </div>
       </form>
+    </section>
+    <section class="portfolio-container">
+      {% if portfolio %}
+      <h1>Portfolio</h1>
+      {% endif %}
     </section>
     <script src="../static/popupButtons.js"></script>
   </body>
