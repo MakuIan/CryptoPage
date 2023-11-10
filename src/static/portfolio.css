@@ -115,3 +115,42 @@
   transition: all 0.3s ease-in-out;
   transform: scale(1.5);
 }
+
+#amount-input {
+  padding: 1rem;
+  background-color: #e6dbd0;
+  transition: all 0.3s ease-in-out;
+  border-radius: 5px;
+  border: 0;
+  outline: none;
+  font: 100;
+  font-size: medium;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+#amount-input:hover {
+  background-color: #fffcfa;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.1);
+  cursor: text;
+}
+.update-amount-btn {
+  background-color: #0077cc;
+  color: #fff;
+  border: 0;
+  outline: none;
+  font: 100;
+  font-size: medium;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.update-amount-btn:hover {
+  background-color: #0099ff;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.1);
+  cursor: pointer;
+}

@@ -52,10 +52,11 @@ def home():
         portfolio = Portfolio(session['id'])
         for row in data:
             portfolio.add_crypto(row[0], row[1])
+            portfolio.update_crypto_price(row[0])
+            portfolio.calc_value(row[0])
         if request.method == 'POST':
             return home_page(db_path, portfolio)
         else:
-            print('hello world')
             return render_template('home.html', id=session['id'], username=session['username'], portfolio=portfolio)
     else:
         return redirect(url_for('login'))

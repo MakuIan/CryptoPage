@@ -29,16 +29,12 @@ def add_crypto(db_path, portfolio):
     if portfolio.includes(crypto.id):
         msg = 'Crypto Already Added'
         return render_template('home.html', id=session['id'], username=session['username'], msg=msg, portfolio=portfolio)
-    query = 'SELECT crypto_id FROM portfolio WHERE user_id = ?'
-    c.execute(query, (session['id'],))
-    result = c.fetchone()
-    if result is None:
-        query = 'INSERT INTO portfolio (crypto_id,user_id,amount) VALUES (?, ?,?)'
-        c.execute(query, (crypto.id, session['id'], 0))
-        conn.commit()
-        portfolio.add_crypto(crypto.id, 0)
-        conn.close()
-        msg = 'Crypto Added'
-    else:
-        msg = 'Crypto already Added'
+
+    query = 'INSERT INTO portfolio (crypto_id,user_id,amount) VALUES (?, ?,?)'
+    c.execute(query, (crypto.id, session['id'], 0))
+    conn.commit()
+    portfolio.add_crypto(crypto.id, 0)
+    conn.close()
+    msg = 'Crypto Added'
+
     return render_template('home.html', id=session['id'], username=session['username'], msg=msg, portfolio=portfolio)

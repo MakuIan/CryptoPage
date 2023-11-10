@@ -18,6 +18,12 @@
       </nav>
     </header>
     <section class="container">
+      {% if error %}
+      <script>
+        alert("{{error}}");
+      </script>
+      ; {% endif %}
+
       <button class="btn" onclick="openPopup('search')">Add</button>
       <form method="POST" action="">
         <section class="search" id="search">
@@ -109,7 +115,7 @@
         </div>
       </form>
     </section>
-    <form action="" method="post">
+    <form action="" method="post" id="portfolio-form">
       <section class="portfolio-container">
         {% if portfolio %}
         <h1>Portfolio</h1>
@@ -119,7 +125,10 @@
               <th>Cryptocurrency</th>
               <th>Symbol</th>
               <th>Price</th>
-              <th>Amount</th>
+              <th>
+                <label for="amount-input">Amount:</label>
+              </th>
+              <th>Value</th>
             </tr>
           </thead>
           <tbody>
@@ -137,7 +146,28 @@
               </td>
               <td class="portfolio-info">{{crypto_info.symbol}}</td>
               <td class="portfolio-info">{{crypto_info.price}}</td>
-              <td class="portfolio-info">{{crypto_info.amount}}</td>
+              <td class="portfolio-info">
+                <form action="" method="post">
+                  <input
+                    id="amount-input"
+                    type="number"
+                    name="amount"
+                    value="{{crypto_info.amount}}"
+                  />
+                  <button
+                    type="submit"
+                    class="update-amount-btn"
+                    name="update_btn"
+                    value="{{crypto_id}}"
+                  >
+                    Update
+                  </button>
+                </form>
+              </td>
+              <td>
+                <span class="portfolio-info">{{crypto_info.value}}</span>
+              </td>
+
               <td class="portfolio-info">
                 <button
                   title="Sell {{crypto_info.name}}"
@@ -153,6 +183,7 @@
             {% endfor %}
           </tbody>
         </table>
+        <script></script>
         {% endif %}
       </section>
     </form>

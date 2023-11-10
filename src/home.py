@@ -11,6 +11,7 @@ from search_crypto import search_crypto
 from portfolio import Portfolio
 from user import User
 from del_crypto import del_crypto
+from update_amount import update_amount
 
 
 def home(db_path, portfolio):
@@ -26,5 +27,10 @@ def home(db_path, portfolio):
     if 'portfolio_button' in request.form:
         crypto_id = request.form['portfolio_button']
         return del_crypto(portfolio, int(crypto_id))
+    if 'update_btn' in request.form:
+        print('hello update')
+        crypto_id = request.form['update_btn']
+        amount = request.form['amount']
+        return update_amount(portfolio, db_path, int(crypto_id), amount)
 
     return render_template('home.html', id=session['id'], username=session['username'], portfolio=portfolio)
