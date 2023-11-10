@@ -17,6 +17,7 @@ header .wrapper {
   justify-content: space-between;
   align-items: center;
   padding: 20px;
+  margin-top: 0;
 }
 
 header a:hover {

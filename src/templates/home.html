@@ -109,51 +109,53 @@
         </div>
       </form>
     </section>
-    <section class="portfolio-container">
-      {% if portfolio %}
-      <h1>Portfolio</h1>
-      <table class="portfolio">
-        <thead>
-          <tr>
-            <th>Cryptocurrency</th>
-            <th>Symbol</th>
-            <th>Price</th>
-            <th>Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for crypto_id, crypto_info in portfolio.cryptos.items() %}
-          <tr class="portfolio-item">
-            <td class="portfolio-info">
-              <span>
-                {{crypto_info.name}}
+    <form action="" method="post">
+      <section class="portfolio-container">
+        {% if portfolio %}
+        <h1>Portfolio</h1>
+        <table class="portfolio">
+          <thead>
+            <tr>
+              <th>Cryptocurrency</th>
+              <th>Symbol</th>
+              <th>Price</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for crypto_id, crypto_info in portfolio.cryptos.items() %}
+            <tr class="portfolio-item">
+              <td class="portfolio-info">
+                <span>
+                  {{crypto_info.name}}
 
-                <img
-                  src="{{crypto_info.logo}}"
-                  alt="logo of{{crypto_info.name}}"
-                />
-              </span>
-            </td>
-            <td class="portfolio-info">{{crypto_info.symbol}}</td>
-            <td class="portfolio-info">{{crypto_info.price}}</td>
-            <td class="portfolio-info">{{crypto_info.amount}}</td>
-            <td class="portfolio-info">
-              <button
-                title="Sell {{crypto_info.name}}"
-                type="submit"
-                name="portfolio_button"
-                value="{{crypto_id}}"
-                class="remove-btn"
-              >
-                Remove
-              </button>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      {% endif %}
-    </section>
+                  <img
+                    src="{{crypto_info.logo}}"
+                    alt="logo of{{crypto_info.name}}"
+                  />
+                </span>
+              </td>
+              <td class="portfolio-info">{{crypto_info.symbol}}</td>
+              <td class="portfolio-info">{{crypto_info.price}}</td>
+              <td class="portfolio-info">{{crypto_info.amount}}</td>
+              <td class="portfolio-info">
+                <button
+                  title="Sell {{crypto_info.name}}"
+                  type="submit"
+                  name="portfolio_button"
+                  value="{{crypto_id}}"
+                  class="remove-btn"
+                >
+                  Remove
+                </button>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% endif %}
+      </section>
+    </form>
     <script src="../static/popupButtons.js"></script>
   </body>
 </html>

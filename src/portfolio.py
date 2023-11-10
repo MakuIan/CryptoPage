@@ -35,7 +35,16 @@ class Portfolio:
         conn.close()
 
     def del_crypto(self, crypto_id):
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        db_path = os.path.join(current_dir, '..', 'data', 'crypto_app.db')
+        conn = sqlite3.connect(db_path)
+
         del self.cryptos[crypto_id]
+        c = conn.cursor()
+        query = f'DELETE FROM portfolio WHERE crypto_id = {crypto_id} AND user_id = {self.user_id}'
+        c.execute(query)
+        conn.commit()
+        conn.close()
 
     def includes(self, crypto_id):
         return crypto_id in self.cryptos
