@@ -12,6 +12,7 @@ from home import home as home_page
 from portfolio import Portfolio
 from user import User
 import sqlite3
+from user_statistics import statistics as render_statistics
 
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -58,6 +59,17 @@ def home():
             return home_page(db_path, portfolio)
         else:
             return render_template('home.html', id=session['id'], username=session['username'], portfolio=portfolio)
+    else:
+        return redirect(url_for('login'))
+
+
+@app.route('/statistics')
+def statistics():
+    """
+    Render statistics page.
+    """
+    if 'id' in session:
+        return render_statistics()
     else:
         return redirect(url_for('login'))
 

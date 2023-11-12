@@ -8,27 +8,6 @@ body {
   background-color: #f2f2f2;
   box-sizing: border-box;
 }
-/* Header Start */
-header .wrapper {
-  background-color: #0077be;
-  list-style: none;
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  margin-top: 0;
-}
-
-header a:hover {
-  color: #ff6600;
-}
-
-header a {
-  color: inherit;
-  text-decoration: none;
-}
-/* Header End */
 
 .container {
   width: 100%;
