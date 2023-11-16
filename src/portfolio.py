@@ -51,8 +51,11 @@ class Portfolio:
 
     def calc_value(self, crypto_id):
         '''Calculate the value of a crypto in the portfolio.'''
-        self.cryptos[crypto_id]['value'] = self.cryptos[crypto_id]['amount'] * \
-            self.cryptos[crypto_id]['price']
+        if self.includes(crypto_id):
+            self.cryptos[crypto_id]['value'] = self.cryptos[crypto_id]['amount'] * \
+                self.cryptos[crypto_id]['price']
+        else:
+            self.cryptos[crypto_id]['value'] = 0
 
     def update_amount(self, crypto_id, amount):
         '''Update the amount of a crypto in the portfolio.'''
