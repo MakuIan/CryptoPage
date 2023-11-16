@@ -13,6 +13,7 @@ from portfolio import Portfolio
 from user import User
 import sqlite3
 from user_statistics import statistics as render_statistics
+import pickle
 
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -55,6 +56,7 @@ def home():
             portfolio.add_crypto(row[0], row[1])
             portfolio.update_crypto_price(row[0])
             portfolio.calc_value(row[0])
+        session['portfolio'] = pickle.dumps(portfolio)
         if request.method == 'POST':
             return home_page(db_path, portfolio)
         else:

@@ -11,30 +11,49 @@
     <header>
       <nav>
         <ul class="wrapper">
-          <li><a href="/">Home</a></li>
+          <li><a href="/home">Home</a></li>
           <li><a href="/statistics">Statistics</a></li>
           <li><a href="https://makus.studio/">Newsfeed </a></li>
           <li><a href="/about">About</a></li>
         </ul>
       </nav>
     </header>
-    <div>
+    <div class="chart-container">
       <canvas id="portfolio-chart"></canvas>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
+    <script type="module">
+      //dynamic random colors
+      const dynamicColors = function () {
+        var r = Math.floor(Math.random() * 255);
+        var g = Math.floor(Math.random() * 255);
+        var b = Math.floor(Math.random() * 255);
+        return "rgb(" + r + "," + g + "," + b + ")";
+      };
+      //sum of array
+      const sum = function (arr) {
+        return arr.reduce(function (a, b) {
+          return a + b;
+        }, 0);
+      };
+
+      //prettier-ignore
+      const backend_data = JSON.parse('{{data|safe}}');
+      console.log(backend_data);
+      const values = backend_data.map((item) => item.value);
+      const logos = backend_data.map((item) => item.logo);
+      const labels = backend_data.map((item) => item.symbol);
       const ctx = document.getElementById("portfolio-chart");
+      const colors = [];
+      for (let value in values) {
+        colors.push(dynamicColors());
+      }
       const data = {
-        labels: ["Red", "Blue", "Yellow"],
+        labels: labels,
         datasets: [
           {
-            label: "My First Dataset",
-            data: [300, 50, 100],
-            backgroundColor: [
-              "rgb(255, 99, 132)",
-              "rgb(54, 162, 235)",
-              "rgb(255, 205, 86)",
-            ],
+            data: values,
+            backgroundColor: colors,
             hoverOffset: 4,
           },
         ],
@@ -42,6 +61,17 @@
       const config = {
         type: "doughnut",
         data: data,
+        options: {
+          plugins: {
+            legend: {
+              position: "top",
+            },
+            title: {
+              display: true,
+              text: "Total Portfolio Value: " + sum(values) + " $",
+            },
+          },
+        },
       };
 
       new Chart(ctx, config);
